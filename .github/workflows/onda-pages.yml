@@ -1,0 +1,55 @@
+name: Publicar onda y actualizar canciones
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: onda-github-pages
+  cancel-in-progress: false
+
+# La raíz del repositorio contiene index.html y los audios.
+# Si tu página está en docs/, cambia SITE_DIR a docs.
+env:
+  SITE_DIR: .
+
+jobs:
+  build:
+    if: github.ref_type == 'branch' && github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - name: Obtener los archivos
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Preparar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Generar la colección con los audios reales
+        run: python3 "$SITE_DIR/tools/generate_playlist.py" --root "$SITE_DIR" --output "$RUNNER_TEMP/onda-site"
+
+      - name: Empaquetar la página y su JSON
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ runner.temp }}/onda-site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar la colección
+        id: deployment
+        uses: actions/deploy-pages@v4
