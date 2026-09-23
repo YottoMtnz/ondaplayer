@@ -8,16 +8,17 @@
 <style>
 :root{color-scheme:dark;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 15%,#251b3a 0,#0b0a12 46%,#07070b 100%);color:#f6f2ff;padding:24px}
-.card{width:min(520px,100%);border:1px solid #312b40;border-radius:28px;background:rgba(18,16,27,.95);padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.35);text-align:center}
-.logo{width:82px;height:82px;margin:0 auto 20px;border-radius:24px;display:grid;place-items:center;background:linear-gradient(145deg,#cbb4ff,#8f6ef7);color:#15101f;font-size:40px;font-weight:900}
-h1{font-size:28px;margin:0 0 8px}
-.muted{color:#aaa3b9;line-height:1.5}
-.song{margin:24px 0;padding:18px;border-radius:20px;background:#171420;border:1px solid #2f2940;text-align:left}
-.song b{display:block;font-size:18px;margin-bottom:5px}
-.song span{color:#aaa3b9}
-button{width:100%;border:0;border-radius:18px;padding:16px 18px;background:#b89cff;color:#120d1d;font-size:17px;font-weight:800;cursor:pointer}
-small{display:block;color:#787183;margin-top:16px;line-height:1.45}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 10%,#2b2044 0,#100d18 42%,#07070b 100%);color:#f7f4ff;padding:24px}
+.card{width:min(520px,100%);border:1px solid #332c43;border-radius:30px;background:rgba(18,16,27,.96);padding:30px;box-shadow:0 22px 70px rgba(0,0,0,.42);text-align:center}
+.logo{width:84px;height:84px;margin:0 auto 20px;border-radius:25px;display:grid;place-items:center;background:linear-gradient(145deg,#d0bdff,#8e6df5);color:#15101f;font-size:42px;font-weight:900;box-shadow:0 12px 34px rgba(143,110,247,.2)}
+h1{font-size:29px;margin:0 0 7px}.muted{color:#aaa3b9;line-height:1.5;margin:0}
+.song{margin:25px 0 22px;padding:19px;border-radius:21px;background:#171420;border:1px solid #302a3e;text-align:left;overflow:hidden}
+.song b{display:block;font-size:18px;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.song span{display:block;color:#aaa3b9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.actions{display:grid;gap:11px}
+a.btn,button.btn{width:100%;border:0;border-radius:18px;padding:16px 18px;font-size:17px;font-weight:800;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:9px}
+.primary{background:#b89cff;color:#120d1d}.secondary{background:#1d1927;color:#f6f2ff;border:1px solid #3a324b!important}.secondary:hover{background:#241e31}
+.hint{display:block;color:#81798e;margin-top:18px;line-height:1.5;font-size:13px}.badge{display:inline-flex;align-items:center;gap:6px;margin-top:11px;padding:7px 10px;border-radius:999px;background:#15121d;border:1px solid #2c2638;color:#9f97ac;font-size:12px}
+@media(max-width:420px){body{padding:16px}.card{padding:24px 20px;border-radius:26px}.logo{width:76px;height:76px}h1{font-size:27px}}
 </style>
 </head>
 <body>
@@ -25,15 +26,25 @@ small{display:block;color:#787183;margin-top:16px;line-height:1.45}
   <div class="logo">≋</div>
   <h1>Onda Music</h1>
   <p class="muted">Te compartieron una canción.</p>
-  <div class="song"><b id="title">Canción compartida</b><span id="artist">Abrir con Onda Music</span></div>
-  <button id="open" type="button">Abrir en Onda</button>
-  <small>Si Onda está instalada, Android la abrirá y preparará esta canción automáticamente.</small>
+  <div class="song">
+    <b id="title">Canción compartida</b>
+    <span id="artist">Abrir con Onda Music</span>
+  </div>
+  <div class="actions">
+    <button class="btn primary" id="open" type="button">▶ Abrir en Onda</button>
+    <a class="btn secondary" id="download" href="https://drive.google.com/uc?export=download&id=1zZRryX6iS3aR1nimz19TNr4rhLKslelr" target="_blank" rel="noopener">↓ Descargar Onda</a>
+  </div>
+  <div class="badge">Android · APK</div>
+  <small class="hint">Si Onda ya está instalada, el primer botón abre esta canción. Si no la tienes, instálala y después vuelve a tocar el enlace que te compartieron.</small>
 </main>
 <script>
 (function(){
   const q=new URLSearchParams(location.search);
   const d=q.get('d')||'';
   const scheme='onda://play/'+d;
+  const drive='https://drive.google.com/file/d/1zZRryX6iS3aR1nimz19TNr4rhLKslelr/view?usp=drive_link';
+  const isAndroid=/Android/i.test(navigator.userAgent);
+
   function decodePayload(){
     try{
       let s=d.replace(/-/g,'+').replace(/_/g,'/');
@@ -44,10 +55,20 @@ small{display:block;color:#787183;margin-top:16px;line-height:1.45}
       document.getElementById('artist').textContent=o.a||o.artist||'Onda Music';
     }catch(e){}
   }
-  function openOnda(){ if(d) location.href=scheme; }
+
+  function openOnda(manual){
+    if(!d)return;
+    if(manual && isAndroid){
+      const intent='intent://play/'+d+'#Intent;scheme=onda;package=com.onda.music;S.browser_fallback_url='+encodeURIComponent(drive)+';end';
+      location.href=intent;
+      return;
+    }
+    location.href=scheme;
+  }
+
   decodePayload();
-  document.getElementById('open').addEventListener('click',openOnda);
-  if(d) setTimeout(openOnda,250);
+  document.getElementById('open').addEventListener('click',()=>openOnda(true));
+  if(d) setTimeout(()=>openOnda(false),350);
 })();
 </script>
 </body>
