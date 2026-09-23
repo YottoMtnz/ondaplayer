@@ -107,7 +107,7 @@ def build(root: Path, output: Path | None = None) -> dict:
         atomic_write(destination / 'index.html', html)
         for file in files:
             shutil.copy2(file, destination / file.name)
-        for extra in ['CNAME', 'robots.txt']:
+        for extra in ['CNAME', 'robots.txt', 'onda-share.html']:
             source = root / extra
             if source.is_file() and not source.is_symlink():
                 shutil.copy2(source, destination / extra)

@@ -6,17 +6,49 @@
 <title>Abrir en Onda Music</title>
 <meta name="theme-color" content="#0b0a12">
 <style>
-:root{color-scheme:dark;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 15%,#251b3a 0,#0b0a12 46%,#07070b 100%);color:#f6f2ff;padding:24px}.card{width:min(520px,100%);border:1px solid #312b40;border-radius:28px;background:rgba(18,16,27,.95);padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.35);text-align:center}.logo{width:82px;height:82px;margin:0 auto 20px;border-radius:24px;display:grid;place-items:center;background:linear-gradient(145deg,#cbb4ff,#8f6ef7);color:#15101f;font-size:40px;font-weight:900}h1{font-size:28px;margin:0 0 8px}.muted{color:#aaa3b9;line-height:1.5}.song{margin:24px 0;padding:18px;border-radius:20px;background:#171420;border:1px solid #2f2940;text-align:left}.song b{display:block;font-size:18px;margin-bottom:5px}.song span{color:#aaa3b9}button{width:100%;border:0;border-radius:18px;padding:16px 18px;background:#b89cff;color:#120d1d;font-size:17px;font-weight:800;cursor:pointer}small{display:block;color:#787183;margin-top:16px;line-height:1.45}
+:root{color-scheme:dark;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 15%,#251b3a 0,#0b0a12 46%,#07070b 100%);color:#f6f2ff;padding:24px}
+.card{width:min(520px,100%);border:1px solid #312b40;border-radius:28px;background:rgba(18,16,27,.95);padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.35);text-align:center}
+.logo{width:82px;height:82px;margin:0 auto 20px;border-radius:24px;display:grid;place-items:center;background:linear-gradient(145deg,#cbb4ff,#8f6ef7);color:#15101f;font-size:40px;font-weight:900}
+h1{font-size:28px;margin:0 0 8px}
+.muted{color:#aaa3b9;line-height:1.5}
+.song{margin:24px 0;padding:18px;border-radius:20px;background:#171420;border:1px solid #2f2940;text-align:left}
+.song b{display:block;font-size:18px;margin-bottom:5px}
+.song span{color:#aaa3b9}
+button{width:100%;border:0;border-radius:18px;padding:16px 18px;background:#b89cff;color:#120d1d;font-size:17px;font-weight:800;cursor:pointer}
+small{display:block;color:#787183;margin-top:16px;line-height:1.45}
 </style>
 </head>
 <body>
 <main class="card">
-<div class="logo">≋</div><h1>Onda Music</h1><p class="muted">Te compartieron una canción.</p>
-<div class="song"><b id="title">Canción compartida</b><span id="artist">Abrir con Onda Music</span></div>
-<button id="open" type="button">Abrir en Onda</button>
-<small>Si Onda está instalada, Android la abrirá y preparará esta canción automáticamente.</small>
+  <div class="logo">≋</div>
+  <h1>Onda Music</h1>
+  <p class="muted">Te compartieron una canción.</p>
+  <div class="song"><b id="title">Canción compartida</b><span id="artist">Abrir con Onda Music</span></div>
+  <button id="open" type="button">Abrir en Onda</button>
+  <small>Si Onda está instalada, Android la abrirá y preparará esta canción automáticamente.</small>
 </main>
 <script>
-(function(){const q=new URLSearchParams(location.search),d=q.get('d')||'',scheme='onda://play/'+d;function dec(){try{let s=d.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const bytes=Uint8Array.from(atob(s),c=>c.charCodeAt(0));const o=JSON.parse(new TextDecoder().decode(bytes));document.getElementById('title').textContent=o.t||o.title||'Canción compartida';document.getElementById('artist').textContent=o.a||o.artist||'Onda Music'}catch(e){}}function open(){if(d)location.href=scheme}dec();document.getElementById('open').addEventListener('click',open);if(d)setTimeout(open,180)})();
+(function(){
+  const q=new URLSearchParams(location.search);
+  const d=q.get('d')||'';
+  const scheme='onda://play/'+d;
+  function decodePayload(){
+    try{
+      let s=d.replace(/-/g,'+').replace(/_/g,'/');
+      while(s.length%4)s+='=';
+      const bytes=Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+      const o=JSON.parse(new TextDecoder().decode(bytes));
+      document.getElementById('title').textContent=o.t||o.title||'Canción compartida';
+      document.getElementById('artist').textContent=o.a||o.artist||'Onda Music';
+    }catch(e){}
+  }
+  function openOnda(){ if(d) location.href=scheme; }
+  decodePayload();
+  document.getElementById('open').addEventListener('click',openOnda);
+  if(d) setTimeout(openOnda,250);
+})();
 </script>
-</body></html>
+</body>
+</html>
