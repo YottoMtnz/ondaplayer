@@ -1,54 +1,81 @@
-<div align="center">
+<h1 align="center">〰️ Onda Music</h1>
+<p align="center"><em>Tu música, a tu manera.</em></p>
+<p align="center"><em>Your music, your way.</em></p>
 
-# 〰️ Onda Music
-
-### Tu música, a tu manera.
-
-Un reproductor web de música personal, ligero y moderno, pensado para escuchar tu colección desde cualquier navegador y publicarla fácilmente con GitHub Pages.
-
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-online-222?logo=github)](https://yottomtnz.github.io/ondaplayer/)
-![HTML5](https://img.shields.io/badge/HTML5-Audio-E34F26?logo=html5&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=111)
-![Responsive](https://img.shields.io/badge/UI-Responsive-C1ADFF)
-
-**[▶ Abrir Onda Music](https://yottomtnz.github.io/ondaplayer/)**
-
-</div>
+<p align="center">
+  <a href="https://yottomtnz.github.io/ondaplayer/"><img src="https://img.shields.io/badge/GitHub%20Pages-online-7c3aed?style=flat-square&logo=github&logoColor=white" alt="Demo en vivo"></a>
+  <img src="https://img.shields.io/badge/HTML5-Audio-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5 Audio">
+  <img src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript vanilla">
+  <img src="https://img.shields.io/badge/UI-Responsive-C1ADFF?style=flat-square" alt="Responsive">
+  <img src="https://img.shields.io/badge/Privacidad-100%25%20local-8ff0c8?style=flat-square" alt="Privacidad: todo local">
+</p>
 
 ---
 
-## 🎧 ¿Qué es Onda?
+## Sobre Onda Music
 
-**Onda Music** es un reproductor de audio web diseñado alrededor de una idea sencilla: tener una colección musical personal, bonita y cómoda de usar, sin depender de una interfaz pesada.
+**Onda Music** es un reproductor web de música personal, ligero y moderno, creado por **Fraudy Martinez Madruga**. Escucha tu colección desde cualquier navegador y publícala fácilmente con GitHub Pages — sin cuentas, sin servidores, sin complicaciones.
 
-Funciona directamente en el navegador y combina una biblioteca musical con controles completos de reproducción, herramientas de organización, soporte para archivos locales y publicación automática con GitHub Pages.
-
----
-
-## ✨ Funciones principales
-
-- 🎵 Reproducción de audio directamente desde el navegador.
-- 🔎 Búsqueda instantánea por canción o artista.
-- ❤️ Favoritos guardados en el navegador.
-- 🔀 Reproducción aleatoria.
-- 🔁 Repetición de canción o de colección.
-- ⏮️⏯️⏭️ Controles completos de reproducción.
-- 🔊 Volumen, silencio y barra de progreso.
-- 📚 Colección con ordenación y filtros.
-- 🎶 Vista de **Reproduciendo ahora** y próxima canción.
-- 🖱️ Arrastrar y soltar archivos de audio sobre la página.
-- 📂 Abrir música directamente desde el dispositivo.
-- 📥 Importar listas en formato JSON.
-- 📤 Exportar la colección actual como `playlist.json`.
-- ⌨️ Atajos de teclado para reproducción y búsqueda rápida.
-- 📱 Diseño adaptable para escritorio, tablet y móvil.
-- 🎛️ Integración con **Media Session API** cuando el navegador la soporta.
-- 🧠 Recuperación ante audios no disponibles: Onda puede continuar con la siguiente canción.
-- 💾 Persistencia local de favoritos, volumen, repetición, aleatorio y última canción.
+**EN** — *Onda Music is a lightweight, modern personal web music player. Listen to your collection from any browser and publish it easily with GitHub Pages — no accounts, no servers, no fuss.*
 
 ---
 
-## 🌐 Colección publicada automáticamente
+## ✨ Características
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🎵 Reproducción completa
+Controles de reproducción, volumen, silencio y barra de progreso. Repetición de canción o de colección, y modo aleatorio.
+
+</td>
+<td width="50%" valign="top">
+
+### 🔎 Búsqueda y organización
+Búsqueda instantánea por canción o artista, ordenación, filtros y vista de **Reproduciendo ahora** con la próxima canción.
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### ❤️ Favoritos
+Marca tus canciones favoritas. Se guardan en el navegador junto con tu volumen, repetición, aleatorio y última canción.
+
+</td>
+<td width="50%" valign="top">
+
+### 🖱️ Arrastra y suelta
+Suelta archivos de audio sobre la página o ábrelos desde tu dispositivo con el botón **Abrir música**.
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🗂️ Playlists JSON
+Importa listas en formato JSON y exporta tu colección actual como `playlist.json`.
+
+</td>
+<td width="50%" valign="top">
+
+### ⌨️ Atajos de teclado
+`Espacio` para reproducir/pausar, `←` `→` para saltar 5 segundos, y búsqueda rápida desde el teclado.
+
+</td>
+</tr>
+</table>
+
+> ### 🎛️ Media Session API
+> Integración con los controles multimedia del sistema cuando el navegador la soporta: cambia de canción desde el teclado, los auriculares o la pantalla de bloqueo.
+>
+> ### 🧠 Recuperación inteligente
+> Si un audio no está disponible, Onda continúa automáticamente con la siguiente canción en lugar de detenerse.
+
+---
+
+## 🌐 Publicación automática
 
 El repositorio incluye un flujo de **GitHub Actions** que prepara y publica Onda en GitHub Pages.
 
@@ -62,9 +89,13 @@ Cada actualización de la rama principal puede:
 
 Así, la colección pública se construye a partir de los audios que realmente existen en el repositorio.
 
+<p align="center">
+  <a href="https://yottomtnz.github.io/ondaplayer/"><img src="https://img.shields.io/badge/Abrir-Onda%20Music-7c3aed?style=for-the-badge&logo=github&logoColor=white" alt="Abrir Onda Music"></a>
+</p>
+
 ---
 
-## 🎼 Formatos reconocidos por el generador
+## 🎼 Formatos reconocidos
 
 `MP3` · `M4A` · `OGG` · `OGA` · `WAV` · `FLAC` · `AAC` · `OPUS` · `WEBM`
 
@@ -74,9 +105,7 @@ Así, la colección pública se construye a partir de los audios que realmente e
 
 ## 🗂️ Playlist JSON
 
-Onda puede trabajar con una lista generada automáticamente o con una lista JSON importada.
-
-Cada pista puede incluir información como:
+Onda puede trabajar con una lista generada automáticamente o con una lista JSON importada. Cada pista puede incluir:
 
 ```json
 {
@@ -92,27 +121,11 @@ Si no se proporcionan todos los datos, el generador intenta crear una presentaci
 
 ## 📱 Enlaces compartidos y Android
 
-El proyecto incluye una página dedicada a canciones compartidas.
-
-Cuando alguien recibe un enlace compatible:
+El proyecto incluye `onda-share.html`, una página dedicada a canciones compartidas. Cuando alguien recibe un enlace compatible:
 
 - Onda intenta abrir la canción en la aplicación Android;
 - si la app no está instalada, la página ofrece una ruta de descarga;
 - el título y el artista compartidos pueden mostrarse antes de abrir la aplicación.
-
-Este flujo mantiene separada la experiencia web de la integración con la app móvil.
-
----
-
-## 🛠️ Estructura principal
-
-| Archivo / carpeta | Función |
-|---|---|
-| `index.html` | Reproductor web principal |
-| `playlist.json` | Colección musical generada |
-| `onda-share.html` | Página para enlaces compartidos |
-| `tools/generate_playlist.py` | Generador de la colección |
-| `.github/workflows/onda-pages.yml` | Publicación automática en GitHub Pages |
 
 ---
 
@@ -127,34 +140,43 @@ Este flujo mantiene separada la experiencia web de la integración con la app m�
 | Buscar | Campo de búsqueda |
 | Favoritos | Botón ❤️ de cada pista |
 
-Los controles multimedia del sistema también pueden funcionar en navegadores compatibles con Media Session.
-
 ---
 
 ## 🔒 Privacidad
 
-Onda funciona principalmente del lado del navegador.
+Onda funciona principalmente del lado del navegador. Las preferencias de reproducción y los favoritos se guardan localmente. Los archivos que abras manualmente desde tu dispositivo se usan durante la sesión y no se suben automáticamente al repositorio.
 
-Las preferencias de reproducción y favoritos se guardan localmente. Los archivos que abras manualmente desde tu dispositivo se utilizan durante la sesión del navegador y no se suben automáticamente al repositorio.
+---
+
+## 🛠️ Estructura del proyecto
+
+| Archivo / carpeta | Función |
+|---|---|
+| `index.html` | Reproductor web principal |
+| `playlist.json` | Colección musical generada |
+| `onda-share.html` | Página para enlaces compartidos |
+| `tools/generate_playlist.py` | Generador de la colección |
+| `.github/workflows/onda-pages.yml` | Publicación automática en GitHub Pages |
+| `VERIFICACION.md` | Registro de comprobaciones de la entrega |
 
 ---
 
 ## 👤 Autor
 
-**Fraudy Martinez Madruga**
+**Onda Music fue creado por Fraudy Martinez Madruga.**
 
-Proyecto personal creado y mantenido como parte del ecosistema Onda.
+Copyright © 2026 Fraudy Martinez Madruga. Proyecto personal creado y mantenido como parte del ecosistema Onda.
 
 ---
 
-<div align="center">
+## 🔗 Enlaces
 
-### 〰️ Onda Music
+- 🌐 **Reproductor:** https://yottomtnz.github.io/ondaplayer/
+- 💻 **Repositorio:** https://github.com/YottoMtnz/ondaplayer
 
-**Pon tu música. Dale play. Sigue la onda.**
+---
 
-**[▶ Abrir reproductor](https://yottomtnz.github.io/ondaplayer/)**
-
-© 2026 Fraudy Martinez Madruga
-
-</div>
+<p align="center">
+  <strong>〰️ Onda Music</strong><br>
+  <em>Pon tu música. Dale play. Sigue la onda.</em>
+</p>
